@@ -17,6 +17,7 @@ class ToastContent extends StatelessWidget {
     this.iconSize = 20,
     this.action,
     this.onActionPressed,
+    this.displayIcon = true,
   }) : super(key: key);
 
   ///The title of the notification if any
@@ -65,11 +66,14 @@ class ToastContent extends StatelessWidget {
   ///must be not null when `action != null`
   final Function()? onActionPressed;
 
+  /// Display or hide the icon widget
+  final bool displayIcon;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        icon != null
+        displayIcon
             ? Row(
                 children: [
                   Padding(

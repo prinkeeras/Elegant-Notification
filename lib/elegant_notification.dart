@@ -29,6 +29,7 @@ class ElegantNotification extends StatefulWidget {
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = 20,
+    this.displayIcon = true,
     this.action,
     this.onActionPressed,
     this.autoDismiss = true,
@@ -104,6 +105,7 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
+    this.displayIcon = true,
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -185,6 +187,7 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
+    this.displayIcon = true,
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -266,6 +269,7 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
+    this.displayIcon = true,
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -351,6 +355,9 @@ class ElegantNotification extends StatefulWidget {
   ///The size of the icon, by default it's 40px
   ///
   late double iconSize;
+
+  ///Display or hide the icon
+  final bool displayIcon;
 
   ///The type of the animation set on the notification
   ///possible values
@@ -635,6 +642,7 @@ class ElegantNotificationState extends State<ElegantNotification>
           children: [
             Expanded(
               child: ToastContent(
+                displayIcon: widget.displayIcon,
                 title: widget.title,
                 description: widget.description,
                 notificationType: widget.notificationType,
