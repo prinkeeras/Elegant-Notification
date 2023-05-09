@@ -69,23 +69,29 @@ class ToastContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: _getNotificationIcon(),
-        ),
-        const SizedBox(
-          width: 15,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20),
-          child: Container(
-            width: 1,
-            color: greyColor,
-          ),
-        ),
-        const SizedBox(
-          width: 15,
-        ),
+        icon != null
+            ? Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: _getNotificationIcon(),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 20),
+                    child: Container(
+                      width: 1,
+                      color: greyColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                ],
+              )
+            : const SizedBox.shrink(),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

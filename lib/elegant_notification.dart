@@ -345,6 +345,7 @@ class ElegantNotification extends StatefulWidget {
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable
   ///
+  ///If this is set to null icon and divider will not be displayed.
   late Widget? icon;
 
   ///The size of the icon, by default it's 40px
