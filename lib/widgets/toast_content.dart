@@ -142,17 +142,17 @@ class ToastContent extends StatelessWidget {
                     onTap: () {
                       onCloseButtonPressed.call();
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.only(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
                         top: 20,
                         right: 10,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.close,
-                            color: Colors.white,
+                            color: Colors.grey,
                             size: 15,
                           ),
                         ],
