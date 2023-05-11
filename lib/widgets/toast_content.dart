@@ -18,6 +18,7 @@ class ToastContent extends StatelessWidget {
     this.action,
     this.onActionPressed,
     this.displayIcon = true,
+    this.isfloatingCloseButton = false,
   }) : super(key: key);
 
   ///The title of the notification if any
@@ -69,8 +70,101 @@ class ToastContent extends StatelessWidget {
   /// Display or hide the icon widget
   final bool displayIcon;
 
+  /// If true, [closeButton] will be floating rather than in a row.
+  final bool isfloatingCloseButton;
+
   @override
   Widget build(BuildContext context) {
+    if (isfloatingCloseButton) {
+      return Stack(
+        children: [
+          Row(
+            children: [
+              displayIcon
+                  ? Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: _getNotificationIcon(),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20, bottom: 20),
+                          child: Container(
+                            width: 1,
+                            color: greyColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  if (title != null) ...[
+                    title!,
+                    const SizedBox(
+                      height: 5,
+                    ),
+                  ],
+                  description,
+                  if (action != null) ...[
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    onActionPressed == null
+                        ? action!
+                        : InkWell(
+                            onTap: onActionPressed,
+                            child: action!,
+                          )
+                  ]
+                ],
+              )),
+            ],
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            width: 40,
+            height: 40,
+            child: Visibility(
+              visible: displayCloseButton,
+              child: closeButton?.call(onCloseButtonPressed) ??
+                  InkWell(
+                    onTap: () {
+                      onCloseButtonPressed.call();
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(
+                        top: 20,
+                        right: 10,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+            ),
+          )
+        ],
+      );
+    }
+
     return Row(
       children: [
         displayIcon

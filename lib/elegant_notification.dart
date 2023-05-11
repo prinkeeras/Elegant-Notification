@@ -19,6 +19,7 @@ class ElegantNotification extends StatefulWidget {
     this.radius = 5.0,
     this.enableShadow = true,
     this.showProgressIndicator = true,
+    this.isfloatingCloseButton = false,
     this.closeButton,
     this.progressIndicatorColor = Colors.blue,
     this.toastDuration = const Duration(milliseconds: 3000),
@@ -102,6 +103,7 @@ class ElegantNotification extends StatefulWidget {
     this.closeButton,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    this.isfloatingCloseButton = false,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
@@ -184,6 +186,7 @@ class ElegantNotification extends StatefulWidget {
     this.closeButton,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    this.isfloatingCloseButton = false,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
@@ -266,6 +269,7 @@ class ElegantNotification extends StatefulWidget {
     this.closeButton,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    this.isfloatingCloseButton = false,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
@@ -421,6 +425,9 @@ class ElegantNotification extends StatefulWidget {
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
   final bool displayCloseButton;
+
+  /// Display the close button as a floating widget
+  final bool isfloatingCloseButton;
 
   ///Close widget rendered as the close function
   ///by default the close button is displayed, if you don't want it set `closeButton` to null
@@ -647,6 +654,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                 description: widget.description,
                 notificationType: widget.notificationType,
                 icon: widget.icon,
+                isfloatingCloseButton: widget.isfloatingCloseButton,
                 displayCloseButton: widget.displayCloseButton,
                 closeButton: widget.closeButton,
                 onCloseButtonPressed: () {
