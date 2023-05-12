@@ -27,6 +27,7 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.notificationPosition = NotificationPosition.topRight,
+    this.notificationPositionOffset = const Alignment(0, 0),
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = 20,
@@ -119,6 +120,7 @@ class ElegantNotification extends StatefulWidget {
     this.width,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.notificationPositionOffset = const Alignment(0, 0),
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = successColor;
@@ -202,6 +204,7 @@ class ElegantNotification extends StatefulWidget {
     this.width,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.notificationPositionOffset = const Alignment(0, 0),
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = errorColor;
@@ -285,6 +288,7 @@ class ElegantNotification extends StatefulWidget {
     this.width,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.notificationPositionOffset = const Alignment(0, 0),
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = inforColor;
@@ -497,6 +501,9 @@ class ElegantNotification extends StatefulWidget {
   ///by default it's grey
   final Color progressIndicatorBackground;
 
+  /// The offset of the notification position
+  final Alignment notificationPositionOffset;
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
@@ -515,7 +522,8 @@ class ElegantNotification extends StatefulWidget {
       builder: (context) {
         return SafeArea(
           child: AlertDialog(
-            alignment: notificationPosition.alignment,
+            alignment:
+                notificationPosition.alignment.add(notificationPositionOffset),
             backgroundColor: Colors.transparent,
             contentPadding: const EdgeInsets.all(0),
             insetPadding: const EdgeInsets.all(30),
